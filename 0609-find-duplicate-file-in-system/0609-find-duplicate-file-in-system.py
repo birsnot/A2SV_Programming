@@ -5,16 +5,16 @@ class Solution:
             i = 0
             while path[i] != ' ':
                 i += 1
-            d_idx = i
-            f_left = i+1
-            f_right = 0
+            d_idx = i  #ending index for directory name
+            f_left = i+1 #starting index for file name
+            f_right = 0 #ending index for file name
             while i < len(path):
                 if path[i] == '(':
                     f_right = i
-                    c_left = i + 1
+                    c_left = i + 1 # starting index for the content
                     while path[i] != ')':
                         i += 1
-                    c_right = i
+                    c_right = i #ending index for the content
                     i += 2
                     content = path[c_left:c_right]
                     dir_ = path[:d_idx]
