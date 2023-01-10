@@ -9,10 +9,7 @@ class Solution:
         ans = []
         for ball in boxes:
             opr -= change
+            ans.append(opr)
             if ball == "1":
-                ans.append(opr)
                 change -= 2
-            else:
-                ans.append(opr)
-        
         return ans
