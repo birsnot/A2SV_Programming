@@ -3,17 +3,12 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        mat_len = len(matrix)
-        n = mat_len - 1
-        for diag in range(mat_len//2):
-            r = c = diag
-            loops = n - 2*diag
-            for i in range(loops):
-                r = diag
-                c = diag + i
-                prev = matrix[n-c][r]
-                for _ in range(4):
-                    val = prev
-                    prev = matrix[r][c]
-                    matrix[r][c] = val
-                    r, c = (c , n - r)
+        n = len(matrix)
+        
+        for row in range(n):
+            for col in range(row + 1, n):
+                matrix[row][col], matrix[col][row] = matrix[col][row], matrix[row][col]
+        
+        for row in matrix:
+            for i in range(n//2):
+                row[i], row[-1-i] = row[-1-i], row[i]
