@@ -7,8 +7,8 @@ class Solution:
         return self.binary_search(0, self.n*self.m - 1)
     
     def binary_search(self, st, end):
-        if st >= end:
-            return self.matrix[st//self.n][st%self.n] == self.target
+        if st > end:
+            return False
         mid = (st + end)//2
         val = self.matrix[mid//self.n][mid%self.n]
         if val == self.target:
