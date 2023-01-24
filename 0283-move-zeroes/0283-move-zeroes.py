@@ -3,12 +3,8 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        current = 0
-        for n in nums:
-            if n != 0:
-                nums[current] = n
-                current += 1
-        nums_len = len(nums)
-        while current < nums_len:
-            nums[current] = 0
-            current += 1
+        placeholder = 0
+        for seeker, num in enumerate(nums):
+            if num:
+                nums[seeker], nums[placeholder] = nums[placeholder], nums[seeker]
+                placeholder += 1
