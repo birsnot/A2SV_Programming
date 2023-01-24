@@ -1,6 +1,7 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
-        change = [0]*len(ratings)
+        N = len(ratings)
+        change = [0]*N
         for i, n in enumerate(ratings[1:]):
             if ratings[i] < n:
                 change[i+1] = change[i] + 1
@@ -14,8 +15,8 @@ class Solution:
             if n == prev:
                 pivots.append(i)
             prev = n
-        pivots.append(len(ratings))
-        ans = [0]*len(ratings)
+        pivots.append(N)
+        ans = [0]*N
         prev_p = 0
         for p in pivots:
             mounts = []
@@ -31,18 +32,17 @@ class Solution:
             mounts.append(p)
             prev_m = prev_p
             for m in mounts:
-                sub = change[prev_m:m]
-                min_ = min(sub)
+                min_ = min(change[prev_m:m])
                 ans[prev_m] = max(ans[prev_m], change[prev_m] - min_)
                 i = prev_m + 1
                 while i < m:
                     ans[i] = change[i] - min_
                     i += 1
                 prev_m = m - 1
-            if prev_p < len(ratings)-1 and change[prev_p] < change[prev_p + 1]:
+            if prev_p < N-1 and change[prev_p] < change[prev_p + 1]:
                 ans[prev_p] = 0
             if p > 1 and change[p-1] < change[p-2]:
                 change[p-1] = 0
             prev_p = p
             
-        return sum(ans) + len(ratings)
+        return sum(ans) + N
