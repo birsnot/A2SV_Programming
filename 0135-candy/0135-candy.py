@@ -33,10 +33,12 @@ class Solution:
             for m in mounts:
                 sub = change[prev_m:m]
                 min_ = min(sub)
-                i = prev_m
+                ans[prev_m] = max(ans[prev_m], change[prev_m] - min_)
+                i = prev_m + 1
                 while i < m:
-                    ans[i] = max(ans[i], change[i] - min_)
+                    ans[i] = change[i] - min_
                     i += 1
+                # ans[m-1] = max(ans[m-1], change[m-1] - min_)
                 prev_m = m - 1
             if prev_p < len(ratings)-1 and change[prev_p] < change[prev_p + 1]:
                 ans[prev_p] = 0
