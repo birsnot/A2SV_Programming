@@ -1,15 +1,12 @@
 class Solution:
     def dividePlayers(self, skill: List[int]) -> int:
-        skill.sort()
-        skill_sum = skill[0] + skill[-1]
-        left = 0
-        right = len(skill)-1
+        c = Counter(skill)
+        skill_sum = sum(skill)//(len(skill)//2)
         ans = 0
-        while left < right:
-            if skill[left] + skill[right] == skill_sum:
-                ans += skill[left]*skill[right]
-            else:
+        for val, count in c.items():
+            pair_skill = skill_sum - val
+            if c[pair_skill] != count:
                 return -1
-            left += 1
-            right -= 1
-        return ans
+            else:
+                ans += count*val*pair_skill
+        return ans//2
