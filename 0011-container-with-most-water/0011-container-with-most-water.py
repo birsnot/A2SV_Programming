@@ -4,10 +4,13 @@ class Solution:
         right = len(height) - 1
         ans = 0
         while left < right:
+            min_h = min(height[left], height[right])
+            ans = max(ans, min_h*(right-left))
             if height[left] < height[right]:
-                ans = max(ans, height[left]*(right-left))
-                left += 1
+                while height[left] <= min_h:
+                    left += 1
             else:
-                ans = max(ans, height[right]*(right-left))
                 right -= 1
+                while height[right] < min_h:
+                    right -= 1
         return ans
