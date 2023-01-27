@@ -1,22 +1,27 @@
 class Solution:
     def largestMerge(self, word1: str, word2: str) -> str:
-        s1 = deque(word1)
-        s2 = deque(word2)
+        len1 = len(word1)
+        len2 = len(word2)
+        p1 = 0
+        p2 = 0
         ans = []
-        while s1 and s2:
-            if s1[0] > s2[0]:
-                ans.append(s1.popleft())
-            elif s1[0] < s2[0]:
-                ans.append(s2.popleft())
+        while p1 < len1 and p2 < len2:
+            if word1[p1] > word2[p2]:
+                ans.append(word1[p1])
+                p1 += 1
+            elif word1[p1] < word2[p2]:
+                ans.append(word2[p2])
+                p2 += 1
             else:
-                temp1 = s1 + s2
-                temp2 = s2 + s1
-                if temp1 > temp2:
-                    ans.append(s1.popleft())
+                temp1 = [word1[p1:], word2[p2:]]
+                if temp1 > temp1[::-1]:
+                    ans.append(word1[p1])
+                    p1 += 1
                 else:
-                    ans.append(s2.popleft())
-        if s1:
-            ans.extend(s1)
-        elif s2:
-            ans.extend(s2)
+                    ans.append(word2[p2])
+                    p2 += 1
+        if p1 < len1:
+            ans.append(word1[p1:])
+        elif p2 < len2:
+            ans.append(word2[p2:])
         return "".join(ans)
