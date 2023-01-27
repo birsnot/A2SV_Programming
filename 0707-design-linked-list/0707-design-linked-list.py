@@ -50,7 +50,9 @@ class MyLinkedList:
                 cur = cur.next
             if index == self.len - 1:
                 self.tail = cur
+            temp = cur.next
             cur.next = cur.next.next
+            del temp
             self.len -= 1
 
 
