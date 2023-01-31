@@ -13,7 +13,6 @@ class Solution:
             len_ += 1
         k = k%len_
         if not k: return head
-        
         left_start = cur = head
         first_len = len_ - k - 1
         for _ in range(first_len):
