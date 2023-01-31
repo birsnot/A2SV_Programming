@@ -8,19 +8,18 @@ class Solution:
         if not head: return head
         len_ = 0
         cur = head
-        while cur:
+        while cur.next:
             cur = cur.next
             len_ += 1
+        turn = cur
+        len_ += 1
         k = k%len_
         if not k: return head
-        left_start = cur = head
+        cur = head
         first_len = len_ - k - 1
         for _ in range(first_len):
             cur = cur.next
-        head = cur.next
+        ans = cur.next
         cur.next = None
-        cur = head
-        while cur.next:
-            cur = cur.next
-        cur.next = left_start
-        return head
+        turn.next = head
+        return ans
