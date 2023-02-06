@@ -3,13 +3,10 @@ class Solution:
         l = 0
         r = n
         N = 2*n
-        ans = [0]*(N)
-        i = 0
+        ans = []
         while r < N:
-            ans[i] = nums[l]
-            i += 1
-            ans[i] = nums[r]
-            i += 1
+            ans.append(nums[l])
+            ans.append(nums[r])
             l += 1
             r += 1
         return ans
