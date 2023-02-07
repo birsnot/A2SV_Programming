@@ -1,26 +1,33 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        fruit = defaultdict(int)
+        fruit = [-1, -1, -1, -1]
         N = len(fruits)
         l = r = 0
-        while r < N and len(fruit) < 2:
-            fruit[fruits[r]] = r
-            r += 1
-        ans = r - l
-        while r < N:
-            if fruits[r] in fruit:
-                fruit[fruits[r]] = r
+        while r < N and -1 in fruit:
+            if fruits[r] == fruit[0]:
+                fruit[1] = r
+            elif fruit[0] == -1:
+                fruit[0] = fruits[r]
+                fruit[1] = r
             else:
-                fruit[fruits[r]] = r
-                ptr = iter(fruit)
-                fr1 = next(ptr)
-                fr2 = next(ptr)
-                if fruit[fr1] < fruit[fr2]:
-                    l = fruit[fr1] + 1
-                    del fruit[fr1]
+                fruit[2] = fruits[r]
+                fruit[3] = r
+            r += 1
+        ans = r - l        
+        while r < N:
+            if fruits[r] == fruit[0]:
+                fruit[1] = r
+            elif fruits[r] == fruit[2]:
+                fruit[3] = r
+            else:
+                if fruit[1] < fruit[3]:
+                    l = fruit[1] + 1
+                    fruit[0] = fruits[r]
+                    fruit[1] = r
                 else:
-                    l = fruit[fr2] + 1
-                    del fruit[fr2]
+                    l = fruit[3] + 1
+                    fruit[2] = fruits[r]
+                    fruit[3] = r
             r += 1
             ans = max(ans, r - l)
         return ans
