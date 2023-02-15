@@ -1,7 +1,3 @@
 class Solution:
     def addToArrayForm(self, num: List[int], k: int) -> List[int]:
-        n = 0
-        for d in num:
-            n = n*10 + d
-        n += k
-        return map(int, str(n))
+        return map(int, str(int("".join(map(str, num)))+k))
