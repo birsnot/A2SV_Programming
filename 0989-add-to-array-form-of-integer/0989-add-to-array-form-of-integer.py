@@ -4,4 +4,4 @@ class Solution:
         for d in num:
             n = n*10 + d
         n += k
-        return list(map(int, str(n)))
+        return map(int, str(n))
