@@ -4,8 +4,8 @@ class Solution:
         for d in num:
             n = n*10 + d
         n += k
-        ans = deque()
+        ans = []
         while n > 0:
-            ans.appendleft(n%10)
+            ans.append(n%10)
             n //= 10
-        return ans
+        return ans[::-1]
