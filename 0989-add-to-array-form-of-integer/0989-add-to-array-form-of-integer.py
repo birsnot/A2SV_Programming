@@ -4,8 +4,4 @@ class Solution:
         for d in num:
             n = n*10 + d
         n += k
-        ans = []
-        while n > 0:
-            ans.append(n%10)
-            n //= 10
-        return ans[::-1]
+        return list(map(int, str(n)))
