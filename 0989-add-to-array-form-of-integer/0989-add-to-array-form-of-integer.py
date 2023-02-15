@@ -3,4 +3,9 @@ class Solution:
         n = 0
         for d in num:
             n = n*10 + d
-        return list(map(int, list(str(n+k))))
+        n += k
+        ans = deque()
+        while n > 0:
+            ans.appendleft(n%10)
+            n //= 10
+        return ans
