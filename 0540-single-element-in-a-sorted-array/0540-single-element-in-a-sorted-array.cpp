@@ -5,21 +5,16 @@ public:
         int left = 0;
         int right = N/2;
         int mid = left + right;
-        while (mid < N){
-            mid -= mid%2;
-            if(nums[mid] != nums[mid+1]){
-                if(mid == 0 || nums[mid] != nums[mid-1]){
-                    return nums[mid];
-                }
-                else{
-                    right = mid/2 - 1;
-                }
+        while (left < right){
+            mid += 1 - mid%2;
+            if(nums[mid] == nums[mid-1]){
+                    left = mid/2 + 1;
             }
             else{
-                left = mid/2 + 1;
+                right = mid/2;
             }
             mid = left + right;
         }
-        return nums[N];
+        return nums[left*2];
     }
 };
