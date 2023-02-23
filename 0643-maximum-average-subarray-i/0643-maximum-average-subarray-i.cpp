@@ -1,6 +1,9 @@
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+        
         long double sum_;
         int N = k;
         if (nums.size() < k) N = nums.size();
