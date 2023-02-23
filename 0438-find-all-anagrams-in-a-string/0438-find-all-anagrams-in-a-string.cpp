@@ -1,6 +1,9 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
+        ios::sync_with_stdio(0);
+        cin.tie(0);
+        
         unordered_map<char, int> pChars;
         for(int i = 0; i < p.length(); ++i){
             pChars[p[i]] += 1;
