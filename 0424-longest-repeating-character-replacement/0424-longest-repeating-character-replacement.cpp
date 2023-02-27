@@ -2,7 +2,7 @@ class Solution {
 public:
     int characterReplacement(string s, int k) {
         int max_ = 0, k_ = k, l = 0;
-        unordered_map<char, int> chars;
+        vector<int> chars(128);
         for(auto ch: s){
             chars[ch] += 1;
             if (chars[ch] > max_){
