@@ -15,14 +15,12 @@ class MyCircularQueue:
     def deQueue(self) -> bool:
         if self.len_:
             self.st += 1
-            self.st %= self.K
             self.len_ -= 1
-            print(self.st, self.len_)
             return True
 
     def Front(self) -> int:
         if self.len_:
-            return self.q[self.st]
+            return self.q[self.st%self.K]
         return -1
 
     def Rear(self) -> int:
