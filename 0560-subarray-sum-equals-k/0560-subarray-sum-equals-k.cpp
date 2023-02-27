@@ -8,7 +8,7 @@ public:
         for(auto n: nums){
             sum_ += n;
             ans += match[sum_ - k];
-            match[sum_] += 1;
+            ++match[sum_];
         }
         return ans;
     }
