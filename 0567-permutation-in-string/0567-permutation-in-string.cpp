@@ -3,14 +3,14 @@ public:
     bool checkInclusion(string s1, string s2) {
         int count = 0, l = 0, len = s1.length();
         char ch;
-        unordered_map<char, int> chars1;
+        vector <int> chars1(128);
         for(auto ch: s1){
             chars1[ch] += 1;
         }
-        unordered_map<char, int> chars2;
+        vector <int> chars2(128);
         for(int i = 0;i < s2.length(); ++i){
             ch = s2[i];
-            if (chars1.find(ch) != chars1.end()){
+            if (chars1[ch] != 0){
                 if(chars2[ch] < chars1[ch]){
                     ++count;
                     ++chars2[ch];
@@ -26,7 +26,7 @@ public:
                 }
             }
             else{
-                chars2.clear();
+                chars2 = vector <int>(128);
                 count = 0;
                 l = i + 1;
             }
