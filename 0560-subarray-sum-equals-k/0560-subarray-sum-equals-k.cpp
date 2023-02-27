@@ -5,9 +5,13 @@ public:
         match[0] = 1;
         int ans = 0;
         long sum_ = 0;
+        int check;
         for(auto n: nums){
             sum_ += n;
-            ans += match[sum_ - k];
+            check = sum_ - k;
+            if(match.find(check) != match.end()){
+                ans += match[check];
+            }
             ++match[sum_];
         }
         return ans;
