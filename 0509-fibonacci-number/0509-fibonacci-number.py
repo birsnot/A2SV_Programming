@@ -1,5 +1,5 @@
 class Solution:
-    @lru_cache
+    @cache
     def fib(self, n: int) -> int:
         if n < 2:
             return n
