@@ -6,6 +6,4 @@ class Solution:
         for p in power3:
             if p <= n:
                 n -= p
-            if n == 0:
-                return True
-        return False
+        return n == 0
