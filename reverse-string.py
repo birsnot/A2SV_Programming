@@ -4,10 +4,9 @@ class Solution:
         Do not return anything, modify s in-place instead.
         """
         def helper(l, r):
-            if r - l < 2:
-                s[l], s[r] = s[r], s[l]
-                return
             s[l], s[r] = s[r], s[l]
+            if r - l < 2:
+                return
             helper(l+1, r-1)
             return
         helper(0, len(s)-1)
