@@ -1,13 +1,15 @@
 class Solution:
-    def getRow(self, rowIndex: int) -> List[int]:
+    def getRow(self, n: int) -> List[int]:
         def helper(arr):
-            N = len(arr) + 1
-            ret = [0]*N
-            ret[0] = ret[-1] = 1
-            for i in range(1, N - 1):
-                ret[i] = arr[i] + arr[i - 1]
-            if N == rowIndex + 1:
-                return ret
-            return helper(ret)
-        if rowIndex == 0: return [1]
+            prev = 1
+            N = len(arr)
+            for i in range(1, N):
+                temp = prev
+                prev = arr[i]
+                arr[i] += temp
+            arr.append(1)
+            if N == n:
+                return arr
+            return helper(arr)
+        if n == 0: return [1]
         return helper([1])
