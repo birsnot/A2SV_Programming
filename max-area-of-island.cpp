@@ -2,15 +2,17 @@ class Solution {
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         int ans = 0, R = grid.size(), C = grid[0].size();
-        vector<pair<int, int>> dir = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
         function<int(int, int)> dfs = [&](int r, int c){
             grid[r][c] = 0;
-            int ret = 1;
-            for(auto d: dir){
-                int nr = r + d.first;
-                int nc = c + d.second;
-                if (nr > -1 && nc > -1 && nr < R && nc < C and grid[nr][nc]) ret += dfs(nr, nc);
-            }
+            int nr, nc, ret = 1;
+            nr = r + 1;
+            if (nr < R && grid[nr][c]) ret += dfs(nr, c);
+            nr = r - 1;
+            if (nr > -1 && grid[nr][c]) ret += dfs(nr, c);
+            nc = c + 1;
+            if (nc < C && grid[r][nc]) ret += dfs(r, nc);
+            nc = c - 1;
+            if (nc > -1 && grid[r][nc]) ret += dfs(r, nc);
             return ret;
         };
         for(int r = 0; r < R; ++r)
