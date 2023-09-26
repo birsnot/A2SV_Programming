@@ -12,6 +12,3 @@ class Solution:
             cur = target - i
             if cur in dp:
                 return sum_ - 2*cur
-            cur = target + i
-            if cur in dp:
-                return sum_ - 2*cur
